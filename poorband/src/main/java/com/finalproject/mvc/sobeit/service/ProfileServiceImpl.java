@@ -37,6 +37,7 @@ public class ProfileServiceImpl implements ProfileService {
         user.setIntroduction(userRepo.findByUserId(user_id).getIntroduction());
 
 
+
         // followingCnt
         // followerCnt
 

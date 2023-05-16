@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+
 public interface FollowingRepo extends JpaRepository<Following, Long>, QuerydslPredicateExecutor<Following> {
 
     // jpa cnt 문법으로 고치기

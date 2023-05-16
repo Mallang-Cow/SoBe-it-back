@@ -23,6 +23,8 @@ public class ProfileServiceImpl implements ProfileService {
     private final ArticleRepo articleRepo;
     private final GoalAmountRepo goalAmountRepo;
     private final FollowingRepo followingRepo;
+
+
     private final JPAQueryFactory queryFactory;
 
     @Override

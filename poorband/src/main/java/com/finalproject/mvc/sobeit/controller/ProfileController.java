@@ -27,14 +27,8 @@ public class ProfileController {
      * 프로필 유저 정보 가져오기
      * */
     @RequestMapping("/profileinfo")
-    public void profileinfo() {
-
-//        Users selectUserInfo(userId);
-
-//        Users user = profileService.selectUserInfo("");
-
-//        List<Article> list = profileService.selectMyArticle("");
-
+    public void profileinfo(String user_id) {
+        Users user = profileService.selectUserInfo(user_id);
 
     }
 
@@ -42,7 +36,9 @@ public class ProfileController {
      * 내가 쓴 글 가져오기
      * */
     @RequestMapping("/myarticle")
-    public void articleList() {
+    public void articleList(String user_id) {
+        List<Article> list = profileService.selectMyArticle("");
+
 
     }
 
@@ -50,7 +46,7 @@ public class ProfileController {
      * 도전 과제 정보 가져오기
      * */
     @RequestMapping("/challenge")
-    public void challenge() {
+    public void challenge(String user_id) {
 
     }
 
@@ -58,7 +54,7 @@ public class ProfileController {
      * 유저 프로필 편집 저장
      * */
     @RequestMapping("/save")
-    public void save() {
+    public void save(Users user) {
 
     }
 
@@ -66,54 +62,48 @@ public class ProfileController {
      * 팔로잉 정보 가져오기
      * */
     @RequestMapping("/following")
-    public void following() {
+    public void following(String user_id) {
 
     }
-    List<Following> selectFollowing();
 
     /**
      * 팔로워 정보 가져오기
      * */
-    @RequestMapping("/challenge")
-    public void challenge() {
+    @RequestMapping("/follower")
+    public void follower(String user_id) {
 
     }
-    List<Following> selectFollower();
 
     /**
      * 팔로잉 해제
      * */
-    @RequestMapping("/challenge")
-    public void challenge() {
+    @RequestMapping("/deleteFollowing")
+    public void deleteFollowing(String user_id, String target_user_id) {
 
     }
-    void unfollow(Long userSeq, boolean state) throws Exception;
 
     /**
      * 팔로우 추가
      * */
-    @RequestMapping("/challenge")
-    public void challenge() {
+    @RequestMapping("/addFollow")
+    public void addFollow(String user_id) {
 
     }
-    void follow(Long userSeq, boolean state) throws Exception;
 
     /**
      * 도전과제 추가
      * */
-    @RequestMapping("/challenge")
-    public void challenge() {
+    @RequestMapping("/challenge/add")
+    public void addChallenge(GoalAmount goalAmount) {
 
     }
-    void insertChallenge(String userId, GoalAmount challenge);
 
     /**
      * 도전과제 삭제
      * */
-    @RequestMapping("/challenge")
-    public void challenge() {
+    @RequestMapping("/challenge/delete")
+    public void deleteChallenge(String goalAmountSeq) {
 
     }
-    void deleteChallenge(String userId, Long challengeSeq);
 
 }

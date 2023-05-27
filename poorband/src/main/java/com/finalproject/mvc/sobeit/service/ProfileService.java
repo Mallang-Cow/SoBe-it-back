@@ -1,5 +1,6 @@
 package com.finalproject.mvc.sobeit.service;
 
+import com.finalproject.mvc.sobeit.dto.NowUserDTO;
 import com.finalproject.mvc.sobeit.dto.ProfileDTO;
 import com.finalproject.mvc.sobeit.dto.ProfileEditDTO;
 import com.finalproject.mvc.sobeit.dto.ProfileUserDTO;
@@ -87,4 +88,11 @@ public interface ProfileService {
      * @return following
      */
     Following follow(Users user, String targetUserId);
+
+    /**
+     * 현재 접속 유저 정보 가져오기
+     * @param user
+     * @return
+     */
+    NowUserDTO selectNowUser(Users user);
 }

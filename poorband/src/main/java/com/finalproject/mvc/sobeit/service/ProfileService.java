@@ -1,6 +1,7 @@
 package com.finalproject.mvc.sobeit.service;
 
 import com.finalproject.mvc.sobeit.dto.ProfileDTO;
+import com.finalproject.mvc.sobeit.dto.ProfileEditDTO;
 import com.finalproject.mvc.sobeit.dto.ProfileUserDTO;
 import com.finalproject.mvc.sobeit.entity.*;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -12,7 +13,7 @@ public interface ProfileService {
     /**
      * 프로필 유저 정보 가져오기
      * @param loggedInUserId
-     * @param targetUserId
+     * @param userId
      * @return profileUserDTO
      */
     ProfileUserDTO selectUserInfo(String loggedInUserId, String userId);
@@ -27,10 +28,10 @@ public interface ProfileService {
     /**
      * 유저 프로필 편집 저장
      * @param loggedInUser
-     * @param updateUser
+     * @param profileEditDTO
      * @return Users : 프로필 편집한 후 update 된 유저
      */
-    Users insertProfile(@AuthenticationPrincipal Users loggedInUser, Users updateUser);
+    Users insertProfile(@AuthenticationPrincipal Users loggedInUser, ProfileEditDTO profileEditDTO);
 
     /**
      * userSeq에 따른 Users 정보를 profileDTO로 가져오기

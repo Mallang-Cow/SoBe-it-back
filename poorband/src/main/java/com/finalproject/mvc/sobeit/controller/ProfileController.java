@@ -50,18 +50,18 @@ public class ProfileController {
      * @return 성공 시 "success", 실패 시 Error message
      * */
     @PostMapping(value = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Object> save(@AuthenticationPrincipal Users loggedInUser, @RequestPart() Users profile, @RequestPart(required = false) MultipartFile file) {
+    public ResponseEntity<Object> save(@AuthenticationPrincipal Users loggedInUser, @RequestPart() ProfileEditDTO profile, @RequestPart(required = false) MultipartFile file) {
         try{
             String url = s3Service.profileImageUpload(file, loggedInUser.getUserSeq());
 
-            Users user = Users.builder()
+            ProfileEditDTO profileEditDTO = ProfileEditDTO.builder()
                     .userId(profile.getUserId())
                     .nickname(profile.getNickname())
                     .introduction(profile.getIntroduction()) // 추후 이미지 편집도 추가?
                     .profileImageUrl(url)
                     .build();
-            System.out.println("user = "+user);
-            Users updatedUser = profileService.insertProfile(loggedInUser, user);
+
+            Users updatedUser = profileService.insertProfile(loggedInUser, profileEditDTO);
             if (updatedUser==null) {
                 throw new RuntimeException("프로필 수정 실패");
             }
@@ -69,7 +69,6 @@ public class ProfileController {
             return ResponseEntity.ok().body("success");
         } catch (Exception e){
             ResponseDTO responseDTO = ResponseDTO.builder().error(e.getMessage()).build();
-
             return ResponseEntity
                     .internalServerError() // Error 500
                     .body(responseDTO);

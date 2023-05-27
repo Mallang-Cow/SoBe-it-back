@@ -1,6 +1,7 @@
 package com.finalproject.mvc.sobeit.service;
 
 import com.finalproject.mvc.sobeit.dto.ProfileDTO;
+import com.finalproject.mvc.sobeit.dto.ProfileEditDTO;
 import com.finalproject.mvc.sobeit.dto.ProfileUserDTO;
 import com.finalproject.mvc.sobeit.entity.*;
 import com.finalproject.mvc.sobeit.repository.FollowNotificationRepo;
@@ -61,16 +62,15 @@ public class ProfileServiceImpl implements ProfileService {
      * 유저 프로필 편집 저장
      * 두 번째 parameter dto로 변경
      * @param loggedInUser
-     * @param updateUser
+     * @param profileEditDTO
      * @return Users : 프로필 편집한 후 update된 유저
      * */
     @Override
-    public Users insertProfile(@AuthenticationPrincipal Users loggedInUser, Users updateUser) {
-        Users user = userRepo.findByUserId(updateUser.getUserId());
-
-        user.setNickname(updateUser.getNickname());
-        user.setIntroduction(updateUser.getIntroduction());
-        user.setProfileImageUrl(updateUser.getProfileImageUrl());
+    public Users insertProfile(@AuthenticationPrincipal Users loggedInUser, ProfileEditDTO profileEditDTO) {
+        Users user = userRepo.findByUserId(profileEditDTO.getUserId());
+        user.setNickname(profileEditDTO.getNickname());
+        user.setIntroduction(profileEditDTO.getIntroduction());
+        user.setProfileImageUrl(profileEditDTO.getProfileImageUrl());
 
         return userRepo.save(user);
     }
